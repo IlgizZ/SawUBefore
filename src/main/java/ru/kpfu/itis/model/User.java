@@ -33,9 +33,12 @@ public class User {
     @OneToMany(mappedBy = "userId")
     List<Geolocation> geolocations;
 
-    public User() {
-    }
+    @OneToMany(mappedBy = "userId")
+    List<UserRequest> userRequests;
 
+    public User() {
+
+    }
 
     public long getId() {
         return id;
@@ -93,5 +96,19 @@ public class User {
         this.isPrivate = isPrivate;
     }
 
+    public List<Geolocation> getGeolocations() {
+        return geolocations;
+    }
 
+    public void setGeolocations(List<Geolocation> geolocations) {
+        this.geolocations = geolocations;
+    }
+
+    public List<UserRequest> getUserRequests() {
+        return userRequests;
+    }
+
+    public void setUserRequests(List<UserRequest> userRequests) {
+        this.userRequests = userRequests;
+    }
 }
