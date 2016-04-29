@@ -1,7 +1,9 @@
 package ru.kpfu.itis.services.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.model.User;
+import ru.kpfu.itis.repository.UserRepository;
 import ru.kpfu.itis.services.UserService;
 
 import java.util.Date;
@@ -15,9 +17,12 @@ import static java.lang.Math.*;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Override
-    public void findUser(Double lat, Double lg, Date time, Long user_id) {
+    @Autowired
+    private UserRepository userRepository;
 
+    @Override
+    public void findAllUsers(Double lat, Double lg, Date time, Long user_id) {
+        //List<User> users = userRepository.findUserBy
     }
 
     @Override

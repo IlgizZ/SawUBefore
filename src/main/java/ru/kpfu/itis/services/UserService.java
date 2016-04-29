@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Service
 public interface UserService {
-    void findUser(Double lat, Double lg, Date time, Long user_id);
+    void findAllUsers(Double lat, Double lg, Date time, Long user_id);
 
     List<User> findUsers(Date time, Long user_id);
 }
