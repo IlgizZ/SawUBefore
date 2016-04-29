@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ru.kpfu.itis.form.GeolocationForm;
 import ru.kpfu.itis.model.Geolocation;
 import ru.kpfu.itis.model.Push;
+import ru.kpfu.itis.model.User;
 import ru.kpfu.itis.repository.GeolocationRepository;
 import ru.kpfu.itis.util.TransformGeolocationFomToGeolocation;
+
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/users/")
@@ -21,11 +25,21 @@ public class UsersController {
     @Autowired
     GeolocationRepository geolocationRepository;
 
-    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public Push saveGeolocation(@RequestParam GeolocationForm geolocationForm) {
         Geolocation geolocation = transformGeolocationFomToGeolocation.apply(geolocationForm);
         geolocationRepository.save(geolocation);
+        return null;
+    }
+
+    @RequestMapping(value = "/findAllUsers", method = RequestMethod.POST)
+    @ResponseBody
+    public void findAllUsers() {
+        //List<User> users = userRepository.findUserBy
+    }
+
+    public List<User> findUsers(Date time, Long user_id) {
         return null;
     }
 
