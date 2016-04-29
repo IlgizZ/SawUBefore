@@ -30,8 +30,8 @@ public class User {
     @Column(name = "is_private")
     private boolean isPrivate;
 
-    @OneToMany(mappedBy = "userId")
-    List<Geolocation> geolocations;
+    @OneToOne
+    Geolocation geolocations;
 
     @OneToMany(mappedBy = "userId")
     List<UserRequest> userRequests;
@@ -96,11 +96,11 @@ public class User {
         this.isPrivate = isPrivate;
     }
 
-    public List<Geolocation> getGeolocations() {
+    public Geolocation getGeolocations() {
         return geolocations;
     }
 
-    public void setGeolocations(List<Geolocation> geolocations) {
+    public void setGeolocations(Geolocation geolocations) {
         this.geolocations = geolocations;
     }
 
