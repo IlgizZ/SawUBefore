@@ -1,7 +1,6 @@
 package ru.kpfu.itis.service;
 
 import org.springframework.stereotype.Service;
-import ru.kpfu.itis.model.Params;
 import ru.kpfu.itis.model.User;
 
 import java.util.Date;
@@ -18,5 +17,5 @@ public interface UserService {
 
     List<User> findUsers(Date time, Long user_id);
 
-    List<User> findUsersByParams(Params params);
+    List<User> findUsersByParams(String string);
 }

@@ -37,7 +37,7 @@ public class UsersController {
     @Autowired
     PointService pointService;
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public List<Push> saveGeolocation(@ModelAttribute PointForm pointForm) {
         Point point = transformPoinFomToPoint.apply(pointForm);

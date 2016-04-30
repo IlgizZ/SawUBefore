@@ -19,8 +19,8 @@ public class UserRequest {
     @Column(name = "is_closed")
     private boolean isClosed = false;
 
-    @JsonIgnore
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -30,10 +30,11 @@ public class UserRequest {
     @Transient
     private Point point;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     Params params;
 
-    @OneToMany(mappedBy = "userRequestId")
+    @JsonIgnore
+    @OneToMany(mappedBy = "userRequestId", fetch = FetchType.EAGER)
     List<Push> push;
 
     public UserRequest() {

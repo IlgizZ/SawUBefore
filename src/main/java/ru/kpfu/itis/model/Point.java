@@ -1,7 +1,5 @@
 package ru.kpfu.itis.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -21,8 +19,8 @@ public class Point {
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date date;
 
-    @JsonIgnore
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

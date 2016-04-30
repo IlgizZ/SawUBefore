@@ -42,7 +42,7 @@ public class UserRequestServiceImpl implements UserRequestService {
 
     @Override
     public void findAndSend(UserRequest userRequest) {
-        List<User> users = userRepository.findAll();//userService.findUsersByParams(userRequest.getParams());
+        List<User> users = userService.findUsersByParams(userRequest.getParams().getSex());
         Point requsetPoint = userRequest.getPoint();
         for (User user : users) {
             for (Point point : user.getPoints()) {

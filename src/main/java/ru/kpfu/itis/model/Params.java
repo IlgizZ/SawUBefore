@@ -1,5 +1,7 @@
 package ru.kpfu.itis.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -12,11 +14,12 @@ public class Params {
     private Long id;
     private String color;
     private String sex;
-    private Integer TopColor;
-    private Integer BottomColor;
+    private String TopColor;
+    private String BottomColor;
 
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "request_id")
     private UserRequest request;
 
@@ -44,19 +47,27 @@ public class Params {
         this.sex = sex;
     }
 
-    public Integer getTopColor() {
+    public String getTopColor() {
         return TopColor;
     }
 
-    public void setTopColor(Integer topColor) {
+    public void setTopColor(String topColor) {
         TopColor = topColor;
     }
 
-    public Integer getBottomColor() {
+    public String getBottomColor() {
         return BottomColor;
     }
 
-    public void setBottomColor(Integer bottomColor) {
+    public void setBottomColor(String bottomColor) {
         BottomColor = bottomColor;
+    }
+
+    public UserRequest getRequest() {
+        return request;
+    }
+
+    public void setRequest(UserRequest request) {
+        this.request = request;
     }
 }

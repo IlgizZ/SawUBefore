@@ -1,7 +1,5 @@
 package ru.kpfu.itis.form;
 
-import java.util.Date;
-
 /**
  * Created by Ilgiz on 30.04.2016.
  */
@@ -10,6 +8,10 @@ public class UserRequestForm {
     private Double lat;
     private Double lg;
     private String date;
+    private String sex;
+    private String topcolor;
+    private String bottomcolor;
+    private String color;
 
     public Long getUserId() {
         return userId;
@@ -41,5 +43,37 @@ public class UserRequestForm {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getTopcolor() {
+        return topcolor;
+    }
+
+    public void setTopcolor(String topcolor) {
+        this.topcolor = topcolor;
+    }
+
+    public String getBottomcolor() {
+        return bottomcolor;
+    }
+
+    public void setBottomcolor(String bottomcolor) {
+        this.bottomcolor = bottomcolor;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
