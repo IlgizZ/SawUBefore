@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.kpfu.itis.form.PointForm;
+import ru.kpfu.itis.form.UserRequestForm;
 import ru.kpfu.itis.model.Point;
 import ru.kpfu.itis.model.Push;
+import ru.kpfu.itis.model.UserRequest;
 import ru.kpfu.itis.service.PointService;
+import ru.kpfu.itis.service.UserRequestService;
+import ru.kpfu.itis.util.TransFromUserRequestFormToUserRequest;
 import ru.kpfu.itis.util.TransformPoinFomToPoint;
 
 @Controller
@@ -17,6 +21,12 @@ import ru.kpfu.itis.util.TransformPoinFomToPoint;
 public class UsersController {
     @Autowired
     TransformPoinFomToPoint transformPoinFomToPoint;
+
+    @Autowired
+    TransFromUserRequestFormToUserRequest transFromUserRequestFormToUserRequest;
+
+    @Autowired
+    UserRequestService userRequestService;
 
     @Autowired
     PointService pointService;
@@ -30,4 +40,12 @@ public class UsersController {
         return null;
     }
 
+    @RequestMapping(value = "/findAllUsers", method = RequestMethod.POST)
+    @ResponseBody
+    public Push saveGeolocation(@ModelAttribute UserRequestForm userRequestForm) {
+        UserRequest userRequest = transFromUserRequestFormToUserRequest.apply(userRequestForm);
+        userRequestService.saveUserRequest(userRequest);
+        userRequestService.findAndSend(userRequest);
+        return null;
+    }
 }
