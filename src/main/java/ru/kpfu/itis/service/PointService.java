@@ -1,4 +1,4 @@
-package ru.kpfu.itis.services;
+package ru.kpfu.itis.service;
 
 import org.springframework.stereotype.Service;
 
