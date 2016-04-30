@@ -27,6 +27,14 @@ public class Push {
     @JoinColumn(name = "form_user_id")
     private User fromUserId;
 
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setIsRead(boolean isRead) {
+        this.isRead = isRead;
+    }
+
     public Push() {
 
     }

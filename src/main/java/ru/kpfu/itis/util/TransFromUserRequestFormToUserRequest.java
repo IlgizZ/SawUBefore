@@ -17,6 +17,7 @@ import java.util.function.Function;
 /**
  * Created by Ilgiz on 30.04.2016.
  */
+
 @Component
 @Transactional
 public class TransFromUserRequestFormToUserRequest implements Function<UserRequestForm, UserRequest> {
