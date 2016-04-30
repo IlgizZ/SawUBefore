@@ -47,10 +47,9 @@ public class UsersController {
 
     @RequestMapping(value = "/findAllUsers", method = RequestMethod.POST)
     @ResponseBody
-    public Push saveGeolocation(@ModelAttribute UserRequestForm userRequestForm) {
+    public void findAllUsers(@ModelAttribute UserRequestForm userRequestForm) {
         UserRequest userRequest = transFromUserRequestFormToUserRequest.apply(userRequestForm);
         userRequestService.saveUserRequest(userRequest);
         userRequestService.findAndSend(userRequest);
-        return null;
     }
 }

@@ -36,7 +36,6 @@ public class UserRequest {
     @OneToMany(mappedBy = "userRequestId")
     List<Push> push;
 
-
     public UserRequest() {
 
     }

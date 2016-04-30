@@ -9,6 +9,8 @@ import ru.kpfu.itis.service.UserService;
 import java.util.Date;
 import java.util.List;
 
+import static java.lang.Math.*;
+
 /**
  * Created by Ilgiz on 30.04.2016.
  */
@@ -31,11 +33,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findUsers(Date time, Long user_id) {
-        return null;
-    }
-
-    @Override
-    public List<User> findUsersByParams() {
         return null;
     }
 
