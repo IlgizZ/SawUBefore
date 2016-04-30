@@ -30,7 +30,7 @@ public class User {
     @Column(name = "is_private")
     private boolean isPrivate = true;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Point> points;
 
     @OneToMany(mappedBy = "user")
