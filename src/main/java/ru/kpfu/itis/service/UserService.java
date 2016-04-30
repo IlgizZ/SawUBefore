@@ -13,5 +13,7 @@ import java.util.List;
 public interface UserService {
     void findAllUsers(Double lat, Double lg, Date time, Long user_id);
 
+    public void save(User user);
+
     List<User> findUsers(Date time, Long user_id);
 }
