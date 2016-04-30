@@ -33,8 +33,8 @@ public class UserRequest {
     @OneToMany(mappedBy = "request")
     List<Params> params;
 
-    @OneToMany(mappedBy = "userRequestId")
-    List<Push> push;
+    @OneToOne
+    Push push;
 
 
 
@@ -90,11 +90,11 @@ public class UserRequest {
         this.params = params;
     }
 
-    public List<Push> getPush() {
+    public Push getPush() {
         return push;
     }
 
-    public void setPush(List<Push> push) {
+    public void setPush(Push push) {
         this.push = push;
     }
 }

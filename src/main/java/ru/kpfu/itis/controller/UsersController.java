@@ -36,6 +36,7 @@ public class UsersController {
     public Push saveGeolocation(@ModelAttribute PointForm pointForm) {
         Point point = transformPoinFomToPoint.apply(pointForm);
         pointService.savePoint(point);
+
         return null;
     }
 
