@@ -17,12 +17,12 @@ public class UserRequest {
     private Long id;
 
     @Column(name = "is_closed")
-    private boolean isClosed;
+    private boolean isClosed = false;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date time;
@@ -54,12 +54,12 @@ public class UserRequest {
         this.isClosed = isClosed;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getTime() {
