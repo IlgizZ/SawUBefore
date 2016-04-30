@@ -3,5 +3,5 @@
 /.idea
 
 /*.iml
-
+/*.properties
 .DS_Store

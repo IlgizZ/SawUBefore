@@ -28,13 +28,13 @@ public class User {
     private String avatar;
 
     @Column(name = "is_private")
-    private boolean isPrivate;
+    private boolean isPrivate = true;
 
-    @OneToOne
-    Geolocation geolocations;
+    @OneToMany(mappedBy = "user")
+    private List<Point> points;
 
     @OneToMany(mappedBy = "userId")
-    List<UserRequest> userRequests;
+    private List<UserRequest> userRequests;
 
     public User() {
 
@@ -96,12 +96,12 @@ public class User {
         this.isPrivate = isPrivate;
     }
 
-    public Geolocation getGeolocations() {
-        return geolocations;
+    public List<Point> getPoints() {
+        return points;
     }
 
-    public void setGeolocations(Geolocation geolocations) {
-        this.geolocations = geolocations;
+    public void setPoints(List<Point> points) {
+        this.points = points;
     }
 
     public List<UserRequest> getUserRequests() {

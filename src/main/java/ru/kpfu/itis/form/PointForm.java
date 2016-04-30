@@ -1,15 +1,13 @@
 package ru.kpfu.itis.form;
 
-import java.util.Date;
-
 /**
  * Created by mikl on 30.04.2016.
  */
-public class GeolocationForm {
+public class PointForm {
     private Long userId;
     private Double lat;
     private Double lg;
-    private Date date;
+    private String date;
 
     public Long getUserId() {
         return userId;
@@ -35,11 +33,11 @@ public class GeolocationForm {
         this.lg = lg;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

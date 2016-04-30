@@ -1,5 +1,7 @@
 package ru.kpfu.itis.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +19,8 @@ public class UserRequest {
     @Column(name = "is_closed")
     private boolean isClosed;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User userId;
 

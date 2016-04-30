@@ -1,5 +1,7 @@
 package ru.kpfu.itis.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -17,11 +19,12 @@ public class Point {
     private Double lg;
 
     @Temporal(value = TemporalType.TIMESTAMP)
-    private Date time;
+    private Date date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_geolocation")
-    private Geolocation userGeolocation;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Point() {
     }
@@ -50,19 +53,19 @@ public class Point {
         this.lg = lg;
     }
 
-    public Date getTime() {
-        return time;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Geolocation getUserGeolocation() {
-        return userGeolocation;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserGeolocation(Geolocation userGeolocation) {
-        this.userGeolocation = userGeolocation;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

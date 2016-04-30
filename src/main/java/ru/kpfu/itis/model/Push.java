@@ -16,13 +16,18 @@ public class Push {
     @JoinColumn(name = "request_id")
     private UserRequest userRequestId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "is_read")
+    private boolean isRead;
+
+
+    @ManyToOne
     @JoinColumn(name = "form_user_id")
     private User fromUserId;
 
-    public Push(){
+    public Push() {
 
     }
+
     public Long getId() {
         return id;
     }
