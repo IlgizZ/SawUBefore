@@ -1,10 +1,10 @@
 package ru.kpfu.itis.service;
 
-import ru.kpfu.itis.model.Point;
+import org.springframework.stereotype.Service;
 
 /**
- * Created by mikl on 30.04.2016.
+ * Created by Ilgiz on 30.04.2016.
  */
+@Service
 public interface PointService {
-    public void savePoint(Point point);
 }
