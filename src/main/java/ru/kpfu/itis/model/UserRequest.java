@@ -30,6 +30,9 @@ public class UserRequest {
     @OneToOne
     private Point point;
 
+    @OneToMany(mappedBy = "request")
+    List<Params> params;
+
     @OneToMany(mappedBy = "userRequestId")
     List<Push> push;
 
@@ -76,6 +79,14 @@ public class UserRequest {
 
     public void setPoint(Point point) {
         this.point = point;
+    }
+
+    public List<Params> getParams() {
+        return params;
+    }
+
+    public void setParams(List<Params> params) {
+        this.params = params;
     }
 
     public List<Push> getPush() {
