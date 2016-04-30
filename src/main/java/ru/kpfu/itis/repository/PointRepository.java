@@ -9,5 +9,5 @@ import ru.kpfu.itis.model.Point;
  */
 @Repository
 public interface PointRepository extends JpaRepository<Point,Long> {
-    find
+
 }

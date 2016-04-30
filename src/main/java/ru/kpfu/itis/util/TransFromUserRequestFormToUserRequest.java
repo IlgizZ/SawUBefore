@@ -1,6 +1,7 @@
 package ru.kpfu.itis.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.kpfu.itis.form.UserRequestForm;
 import ru.kpfu.itis.model.Point;
 import ru.kpfu.itis.model.User;
@@ -12,6 +13,7 @@ import java.util.function.Function;
 /**
  * Created by Ilgiz on 30.04.2016.
  */
+@Component
 public class TransFromUserRequestFormToUserRequest implements Function<UserRequestForm, UserRequest> {
 
     @Autowired

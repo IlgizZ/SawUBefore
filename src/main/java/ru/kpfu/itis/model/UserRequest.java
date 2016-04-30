@@ -27,14 +27,14 @@ public class UserRequest {
     @Temporal(TemporalType.TIMESTAMP)
     private Date time;
 
-    @OneToOne
+    @Transient
     private Point point;
 
-    @OneToMany(mappedBy = "request")
-    List<Params> params;
-
     @OneToOne
-    Push push;
+    Params params;
+
+    @OneToMany(mappedBy = "userRequestId")
+    List<Push> push;
 
 
     public UserRequest() {
@@ -81,19 +81,19 @@ public class UserRequest {
         this.point = point;
     }
 
-    public List<Params> getParams() {
+    public Params getParams() {
         return params;
     }
 
-    public void setParams(List<Params> params) {
+    public void setParams(Params params) {
         this.params = params;
     }
 
-    public Push getPush() {
+    public List<Push> getPush() {
         return push;
     }
 
-    public void setPush(Push push) {
+    public void setPush(List<Push> push) {
         this.push = push;
     }
 }

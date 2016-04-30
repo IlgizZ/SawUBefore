@@ -1,5 +1,7 @@
 package ru.kpfu.itis.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -12,8 +14,10 @@ public class Push {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "request_id")
+    @JsonIgnore
     private UserRequest userRequestId;
 
     @Column(name = "is_read")

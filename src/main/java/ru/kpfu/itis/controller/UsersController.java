@@ -11,10 +11,13 @@ import ru.kpfu.itis.form.UserRequestForm;
 import ru.kpfu.itis.model.Point;
 import ru.kpfu.itis.model.Push;
 import ru.kpfu.itis.model.UserRequest;
+import ru.kpfu.itis.repository.PushRepository;
 import ru.kpfu.itis.service.PointService;
 import ru.kpfu.itis.service.UserRequestService;
 import ru.kpfu.itis.util.TransFromUserRequestFormToUserRequest;
 import ru.kpfu.itis.util.TransformPoinFomToPoint;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/users")
@@ -29,15 +32,17 @@ public class UsersController {
     UserRequestService userRequestService;
 
     @Autowired
+    PushRepository pushRepository;
+
+    @Autowired
     PointService pointService;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Push saveGeolocation(@ModelAttribute PointForm pointForm) {
+    public List<Push> saveGeolocation(@ModelAttribute PointForm pointForm) {
         Point point = transformPoinFomToPoint.apply(pointForm);
         pointService.savePoint(point);
-
-        return null;
+        return pushRepository.findNotReadPush(pointForm.getUserId());
     }
 
     @RequestMapping(value = "/findAllUsers", method = RequestMethod.POST)
