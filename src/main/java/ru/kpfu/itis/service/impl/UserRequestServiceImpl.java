@@ -3,8 +3,11 @@ package ru.kpfu.itis.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.model.Point;
+import ru.kpfu.itis.model.Push;
 import ru.kpfu.itis.model.User;
 import ru.kpfu.itis.model.UserRequest;
+import ru.kpfu.itis.repository.PushRepository;
+import ru.kpfu.itis.repository.UserRepository;
 import ru.kpfu.itis.repository.UserRequestRepository;
 import ru.kpfu.itis.service.UserRequestService;
 import ru.kpfu.itis.service.UserService;
@@ -12,8 +15,6 @@ import ru.kpfu.itis.service.UserService;
 import java.util.List;
 
 import static java.lang.Math.*;
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
 
 /**
  * Created by Ilgiz on 30.04.2016.
@@ -21,11 +22,18 @@ import static java.lang.Math.sin;
 @Service
 public class UserRequestServiceImpl implements UserRequestService {
     private static final double distanceRadius = 500;
+    private static final double e = 10E-10;
+    private static final long timeInterval = 30 * 60 * 1000;
     @Autowired
     UserRequestRepository userRequestRepository;
 
     @Autowired
+    UserRepository userRepository;
+    @Autowired
     UserService userService;
+
+    @Autowired
+    PushRepository pushRepository;
 
     @Override
     public void saveUserRequest(UserRequest userRequest) {
@@ -34,11 +42,38 @@ public class UserRequestServiceImpl implements UserRequestService {
 
     @Override
     public void findAndSend(UserRequest userRequest) {
-        List<User> users = userService.findUsersByParams(userRequest.getParams());
+        List<User> users = userRepository.findAll();//userService.findUsersByParams(userRequest.getParams());
         Point requsetPoint = userRequest.getPoint();
-        users.forEach(user -> {
-           if (calculateDistance(requsetPoint.))
-        });
+        for (User user : users) {
+            for (Point point : user.getPoints()) {
+                long requestTime = userRequest.getTime().getTime();
+                long userTime = point.getDate().getTime();
+                if ((Math.abs(requestTime - userTime) < timeInterval) &&
+                        calculateDistance(requsetPoint.getLat(), requsetPoint.getLg(),
+                                point.getLat(), point.getLg()) - distanceRadius < e) {
+                    Push push = new Push();
+                    push.setFromUserId(user);
+                    push.setUserRequestId(userRequest);
+                    pushRepository.save(push);
+                }
+            }
+        }
+//        users.forEach(user -> {
+//
+//            user.getPoints().forEach(point -> {
+//                long requestTime = userRequest.getTime().getTime();
+//                long userTime = point.getDate().getTime();
+//                if ((Math.abs(requestTime - userTime) < timeInterval) &&
+//                        calculateDistance(requsetPoint.getLat(), requsetPoint.getLg(),
+//                                point.getLat(), point.getLg()) - distanceRadius < e) {
+//                    Push push = new Push();
+//                    push.setFromUserId(user);
+//                    push.setUserRequestId(userRequest);
+//                    pushRepository.save(push);
+//                }
+//            });
+//
+//        });
     }
 
     /**
@@ -49,10 +84,10 @@ public class UserRequestServiceImpl implements UserRequestService {
      * @return расстояние в метрах
      */
     private double calculateDistance(double lat1, double lg1, double lat2, double lg2) {
-        lat1 = 55.865203 * PI / 180; //широта
-        lg1 = 49.082148 * PI / 180;
-        lat2 = 55.863903 * PI / 180; //долгота
-        lg2 = 49.087373 * PI / 180;
+        lat1 *= PI / 180; //широта
+        lg1 *= PI / 180;
+        lat2 *= PI / 180; //долгота
+        lg2 *= PI / 180;
         double distance;
         double radius = 6372795;
         double signm; // угловая разница

@@ -9,7 +9,7 @@ public class UserRequestForm {
     private Long userId;
     private Double lat;
     private Double lg;
-    private Date date;
+    private String date;
 
     public Long getUserId() {
         return userId;
@@ -35,11 +35,11 @@ public class UserRequestForm {
         this.lg = lg;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

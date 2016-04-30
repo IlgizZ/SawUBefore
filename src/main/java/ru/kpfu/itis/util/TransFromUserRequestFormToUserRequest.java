@@ -9,6 +9,8 @@ import ru.kpfu.itis.model.UserRequest;
 import ru.kpfu.itis.repository.UserRepository;
 
 import javax.transaction.Transactional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.function.Function;
 
 /**
@@ -32,7 +34,12 @@ public class TransFromUserRequestFormToUserRequest implements Function<UserReque
 
         userRequest.setUser(user);
         userRequest.setPoint(point);
-        userRequest.setTime(userRequestForm.getDate());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        try {
+            userRequest.setTime(formatter.parse(userRequestForm.getDate()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         return userRequest;
     }
