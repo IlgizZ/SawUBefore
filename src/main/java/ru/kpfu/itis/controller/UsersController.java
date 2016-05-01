@@ -86,13 +86,14 @@ public class UsersController {
 
     @RequestMapping(value = "/sign_in", method = RequestMethod.POST)
     @ResponseBody
-    public Long login(@ModelAttribute UserForm userForm) {
+    public User login(@ModelAttribute UserForm userForm) {
         User user = transformUserFormToUser.apply(userForm);
         User userFromDB = userRepository.findOneByLogin(user.getLogin());
         if (userFromDB != null && user.getPassword().equals(userFromDB.getPassword())) {
-            return userFromDB.getId();
+            return userFromDB;
         }
-        return Long.valueOf(-1);
+        user.setId(-1);
+        return user;
     }
 
 }

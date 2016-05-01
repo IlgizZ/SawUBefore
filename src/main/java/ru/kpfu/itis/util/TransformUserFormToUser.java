@@ -21,6 +21,8 @@ public class TransformUserFormToUser implements Function<UserForm, User> {
         user.setPassword(userForm.getPassword());
         user.setSex(userForm.getSex());
         user.setUrl(userForm.getUrl());
+        user.setFirstName(userForm.getFirstName());
+        user.setLastName(userForm.getLastName());
         return user;
     }
 }
